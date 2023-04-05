@@ -32,9 +32,20 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "string"
+                                },
+                                "results": {
+                                    "type": "integer"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
                             }
                         }
                     }
@@ -51,13 +62,24 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "city": {
+                                "status": {
                                     "type": "string"
                                 },
-                                "people": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
+                                "results": {
+                                    "type": "integer"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "city": {
+                                            "type": "string"
+                                        },
+                                        "people": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -76,11 +98,23 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "name": {
+                                "status": {
                                     "type": "string"
                                 },
-                                "birthyear": {
-                                    "type": "integer"                                }
+                                "results": {
+                                    "type": "integer"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "birthyear": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
