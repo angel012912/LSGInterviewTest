@@ -3,12 +3,20 @@
 // NPM VERSION: 18.15.0 (Borrar)
 // Node VERSION: 9.5.0 (Borrar)
 
+// Importing Swagger Packages
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./swagger.json');
+
 // Importing express
 const express = require('express')
 // Creating an express app
 const app = express()
 // Defining the port
 const port = 3000
+
+//  Using the swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
 
 // Importing the csv parser
 const fs = require("fs");
@@ -54,13 +62,13 @@ function getNamesByPlace() {
 // Function to generate a list of names with the birth year based on the age
 function getBirthYear() {
   var copyData = [...csvData];
-  var names = [];
+  var birthYear = {};
   var year = new Date().getFullYear();
 
   copyData.forEach(function (a) {
-    names.push(a[0] + ", Birth Year: " + (year - a[1]));
+    birthYear[a[0]] = year - a[1];
   });
-  return names;
+  return birthYear;
 }
 
 // Defining the default route
@@ -78,7 +86,7 @@ app.get('/places', (req, res) => {
   res.send(getNamesByPlace());
 });
 
-// Defining the route to get the names with the birth year
+// Defining the route to get the names with their year of birth based on their age
 app.get('/birthyear', (req, res) => {
   res.send(getBirthYear());
 });

@@ -1,0 +1,94 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0", 
+        "title": "Test for LSG IT Consultant Intern Application",
+        "description": "This is a RESTful API that provides information about specific data from a CSV document",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "People Data",
+            "description": "API for retrieve data from CSV document"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/names": {
+            "get": {
+                "tags": ["People Data"],
+                "summary": "Get all names sorted by their age in ascending order",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/places": {
+            "get": {
+                "tags": ["People Data"],
+                "summary": "Get a summary of the people living in each city",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "city": {
+                                    "type": "string"
+                                },
+                                "people": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/birthyear": {
+            "get": {
+                "tags": ["People Data"],
+                "summary": "Get all the names along with their year of birth obtained from their age",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "birthyear": {
+                                    "type": "integer"                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
