@@ -24,7 +24,7 @@
         "application/json"
     ],
     "paths": {
-        "/v1/names": {
+        "/names": {
             "get": {
                 "tags": ["People Data"],
                 "summary": "Get all names sorted by their age in ascending order",
@@ -41,7 +41,7 @@
                 }
             }
         },
-        "/v1/places": {
+        "/places": {
             "get": {
                 "tags": ["People Data"],
                 "summary": "Get a summary of the people living in each city",
@@ -66,7 +66,7 @@
                 }
             }
         },
-        "/v1/birthyear": {
+        "/birthyear": {
             "get": {
                 "tags": ["People Data"],
                 "summary": "Get all the names along with their year of birth obtained from their age",

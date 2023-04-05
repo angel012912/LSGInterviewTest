@@ -1,40 +1,12 @@
 // Author: Jose Angel Garcia Gomez
 // Date: 10/10/2019
-// NPM VERSION: 18.15.0 (Borrar)
-// Node VERSION: 9.5.0 (Borrar)
+// Description: Definition of all the main functions of the project
 
-// Importing Swagger Packages
-const swaggerUi = require('swagger-ui-express')
-const swaggerDocument = require('./swagger.json');
-
-// Importing express
-const express = require('express')
-// Creating an express app
-const app = express()
-// Defining the port
-const port = 4000
-
-//  Using the swagger UI
-app.use('/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
-
-
-// Importing the csv parser
-const fs = require("fs");
-const { parse } = require("csv-parse");
-
-// Defining the varaibles
-var csvData = [];
-
-// Reading the csv file
-fs.createReadStream("./ListadoTest.csv")
-  .pipe(parse({ delimiter: ",", from_line: 1 }))
-  .on("data", function (row) {
-    csvData.push(row);
-  })
+/* Defining the functions */
 
 // Function to sort the csv data by age
-function getNamesByAge() {
-  var copyData = [...csvData];
+exports.getNamesByAge = (data) => {
+  var copyData = [...data];
   var names = [];
   copyData.sort(function (a, b) {
     return a[1] - b[1];
@@ -46,8 +18,8 @@ function getNamesByAge() {
 }
 
 // Function to generate a resume of names by place of birth
-function getNamesByPlace() {
-  var copyData = [...csvData];
+exports.getNamesByPlace = (data) => {
+  var copyData = [...data];
   var places = {};
   copyData.forEach(function (a) {
     if (places[a[2]] == undefined) {
@@ -60,8 +32,8 @@ function getNamesByPlace() {
 }
 
 // Function to generate a list of names with the birth year based on the age
-function getBirthYear() {
-  var copyData = [...csvData];
+exports.getBirthYear = (data) => {
+  var copyData = [...data];
   var birthYear = {};
   var year = new Date().getFullYear();
 
@@ -71,31 +43,3 @@ function getBirthYear() {
   return birthYear;
 }
 
-
-// Defining the default route
-app.get('/v1/', (req, res) => {
-  res.send('Hello World!');
-})
-
-// Defining the route to get the names sorted by age
-app.get('/v1/names', (req, res) => {
-  res.send(getNamesByAge());
-});
-
-// Defining the route to get the names sorted by place of birth
-app.get('/v1/places', (req, res) => {
-  res.send(getNamesByPlace());
-});
-
-// Defining the route to get the names with their year of birth based on their age
-app.get('/v1/birthyear', (req, res) => {
-  res.send(getBirthYear());
-});
-
-
-
-// Opnening the server on the port defined above
-app.listen(port, () => { 
-  console.log(`App listening on port ${port}`);
-  console.log('Visit localhost:4000/v1/api-docs to see the documentation'); 
-}) 
