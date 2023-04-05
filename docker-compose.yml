@@ -1,3 +1,7 @@
+# Author: Jose Angel Garcia Gomez
+# Date: 04/04/2023
+# Description: Dockerfile for node-express-docker
+
 version: '3'
 services:
   node-express-docker:
