@@ -9,8 +9,8 @@
             "url": "https://opensource.org/licenses/MIT"
         }
     },
-    "host": "localhost:3000",
-    "basePath": "/",
+    "host": "localhost:4000",
+    "basePath": "/v1",
     "tags": [
         {
             "name": "People Data",
@@ -24,7 +24,7 @@
         "application/json"
     ],
     "paths": {
-        "/names": {
+        "/v1/names": {
             "get": {
                 "tags": ["People Data"],
                 "summary": "Get all names sorted by their age in ascending order",
@@ -41,7 +41,7 @@
                 }
             }
         },
-        "/places": {
+        "/v1/places": {
             "get": {
                 "tags": ["People Data"],
                 "summary": "Get a summary of the people living in each city",
@@ -66,7 +66,7 @@
                 }
             }
         },
-        "/birthyear": {
+        "/v1/birthyear": {
             "get": {
                 "tags": ["People Data"],
                 "summary": "Get all the names along with their year of birth obtained from their age",

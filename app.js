@@ -12,10 +12,10 @@ const express = require('express')
 // Creating an express app
 const app = express()
 // Defining the port
-const port = 3000
+const port = 4000
 
 //  Using the swagger UI
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use('/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 
 // Importing the csv parser
@@ -71,23 +71,24 @@ function getBirthYear() {
   return birthYear;
 }
 
+
 // Defining the default route
-app.get('/', (req, res) => {
+app.get('/v1/', (req, res) => {
   res.send('Hello World!');
 })
 
 // Defining the route to get the names sorted by age
-app.get('/names', (req, res) => {
+app.get('/v1/names', (req, res) => {
   res.send(getNamesByAge());
 });
 
 // Defining the route to get the names sorted by place of birth
-app.get('/places', (req, res) => {
+app.get('/v1/places', (req, res) => {
   res.send(getNamesByPlace());
 });
 
 // Defining the route to get the names with their year of birth based on their age
-app.get('/birthyear', (req, res) => {
+app.get('/v1/birthyear', (req, res) => {
   res.send(getBirthYear());
 });
 
@@ -95,5 +96,6 @@ app.get('/birthyear', (req, res) => {
 
 // Opnening the server on the port defined above
 app.listen(port, () => { 
-  console.log(`App listening on port ${port}`) 
+  console.log(`App listening on port ${port}`);
+  console.log('Visit localhost:4000/v1/api-docs to see the documentation'); 
 }) 
